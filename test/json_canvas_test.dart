@@ -70,6 +70,17 @@ void main() {
       color: CanvasColorPresets.red.toNum().toString(),
     );
 
+    final nonUniqueEdgeId = Edge(
+      id: 'edge-id-1',
+      fromNode: textNode.id,
+      toNode: groupNode.id,
+      toEnd: End.arrow,
+      fromEnd: End.arrow,
+      fromSide: Side.bottom,
+      toSide: Side.top,
+      color: CanvasColorPresets.red.toNum().toString(),
+    );
+
     setUp(() {});
 
     test('add nodes to Canvas', () {
@@ -77,17 +88,20 @@ void main() {
       myCanvas.addNode(groupNode);
       myCanvas.addNode(urlNode);
       myCanvas.addNode(fileNode);
-      // expect((){myCanvas.addNode(nonUniqueNodeId), Exception()},);
       expect(() {
         myCanvas.addNode(nonUniqueNodeId);
         throw Exception();
-      }, throwsException); // Expecting an exception
+      }, throwsException);
       expect(myCanvas.nodes?.isNotEmpty, true);
       expect(myCanvas.nodes?.length, 4);
     });
 
     test('add edges to Canvas', () {
       myCanvas.addEdge(edge1);
+      expect(() {
+        myCanvas.addEdge(nonUniqueEdgeId);
+        throw Exception();
+      }, throwsException);
       expect(myCanvas.edges?.isNotEmpty, true);
       expect(myCanvas.edges?.length, 1);
     });
