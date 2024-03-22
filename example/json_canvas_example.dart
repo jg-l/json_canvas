@@ -1,8 +1,6 @@
 import 'package:json_canvas/json_canvas.dart';
 
 void main() {
-  // var awesome = Awesome();
-
 // Create your Canvas
   final myCanvas = Canvas();
 

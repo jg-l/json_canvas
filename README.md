@@ -18,33 +18,32 @@ A package that implements the [JSON Canvas](https://jsoncanvas.org/) in Dart! Yo
 ```dart
 import 'package:json_canvas/json_canvas.dart';
 
-
-// Create a canvas
+// Create your Canvas
 final myCanvas = Canvas();
 
 // Create a text node
-  final myTextNode = TextNode(
+final myTextNode = TextNode(
     id: 'unique-id-123',
     x: 0,
     y: 0,
     width: 100,
     height: 100,
     text: 'Hello Word!',
-  );
-
-// Add the node to the Canvas
-myCanvas.addNode(myTextNode);
-
-// Create another node
-final myOtherTextNode = TextNode(
-id: 'unique-id-999',
-x: 100,
-y: 100,
-width: 100,
-height: 100,
-text: 'Hello Again, World!',
 );
 
+// Add the node to th
+myCanvas.addNode(myTextNode);
+
+final myOtherTextNode = TextNode(
+    id: 'unique-id-999',
+    x: 100,
+    y: 100,
+    width: 100,
+    height: 100,
+    text: 'Hello Again, World!',
+);
+
+// Add Another one
 myCanvas.addNode(myOtherTextNode);
 
 // Make a connection between the two nodes
@@ -60,6 +59,7 @@ myCanvas.removeNode(myTextNode.id);
 
 // Export to JSON Canvas
 myCanvas.toJson();
+
 ```
 
 ## Additional information

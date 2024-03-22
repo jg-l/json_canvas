@@ -65,13 +65,11 @@ class Canvas {
     return Canvas(
       nodes: nodes != null
           ? List.generate(nodes.length, (index) {
-              print(nodes.length);
               return json_canvas.Node.fromJson(nodes[index]);
             })
           : null,
       edges: edges != null
           ? List.generate(edges.length, (index) {
-              print(nodes.length);
               return Edge.fromJson(edges[index]);
             })
           : null,
