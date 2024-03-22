@@ -1,5 +1,4 @@
 import 'package:json_canvas/src/canvas_color.dart';
-import 'package:json_canvas/src/node.dart';
 
 enum Side { top, right, bottom, left }
 
