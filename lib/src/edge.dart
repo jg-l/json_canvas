@@ -61,12 +61,6 @@ class Edge {
         'id': String id,
         'fromNode': String fromNode,
         'toNode': String toNode,
-        // 'fromSide': String? fromSide,
-        // 'fromEnd': String? fromEnd,
-        // 'toSide': String? toSide,
-        // 'toEnd': String? toEnd,
-        // 'color': String? color,
-        // 'label': String? label,
       } =>
         Edge(
           id: id,

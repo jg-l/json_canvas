@@ -1,6 +1,6 @@
 name: json_canvas
-description: A package that implemnents the JSON Canvas spec
-version: 1.0.0
+description: A package that implemnents the JSON Canvas spec. Provides the Dart objects that allows decoding, encoding, and management of JSON Canvas.
+version: 1.0.1
 repository: https://github.com/jg-l/json_canvas
 
 environment:
