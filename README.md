@@ -10,30 +10,61 @@ For general information about developing packages, see the Dart guide for
 and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
 ## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+A package that implements the [JSON Canvas](https://jsoncanvas.org/) in Dart! You can easily use it in Flutter projects.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
 ```dart
-const like = 'sample';
+import 'package:json_canvas/json_canvas.dart';
+
+
+// Create a canvas
+final myCanvas = Canvas();
+
+// Create a text node
+  final myTextNode = TextNode(
+    id: 'unique-id-123',
+    x: 0,
+    y: 0,
+    width: 100,
+    height: 100,
+    text: 'Hello Word!',
+  );
+
+// Add the node to the Canvas
+myCanvas.addNode(myTextNode);
+
+// Create another node
+final myOtherTextNode = TextNode(
+id: 'unique-id-999',
+x: 100,
+y: 100,
+width: 100,
+height: 100,
+text: 'Hello Again, World!',
+);
+
+myCanvas.addNode(myOtherTextNode);
+
+// Make a connection between the two nodes
+myCanvas.addEdge(Edge(
+    id: "edge-1",
+    fromNode: myTextNode.id,
+    toNode: myOtherTextNode.id,
+    label: "Connection 1",
+));
+
+// Remove a node and all of its connections
+myCanvas.removeNode(myTextNode.id);
+
+// Export to JSON Canvas
+myCanvas.toJson();
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+- Read the [JSON Canvas Spec](https://jsoncanvas.org/spec/1.0/)
+- [ ] Flutter Implementation
+
+
