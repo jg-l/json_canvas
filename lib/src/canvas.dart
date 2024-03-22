@@ -1,6 +1,7 @@
 import 'package:json_canvas/src/edge.dart';
 // Prevent conflict imports from dart:html
 import 'package:json_canvas/src/node.dart' as json_canvas;
+import 'package:json_canvas/src/node.dart';
 
 class Canvas {
   List<json_canvas.Node>? nodes;
@@ -26,6 +27,21 @@ class Canvas {
       }
     }
     edges!.add(edge);
+  }
+
+  removeNode(String nodeId) {
+    if (nodes != null) {
+      nodes!.removeWhere((n) => n.id == nodeId);
+    }
+    if (edges != null) {
+      edges!.removeWhere((e) => e.fromNode == nodeId || e.toNode == nodeId);
+    }
+  }
+
+  removeEdge(String edgeId) {
+    if (edges != null) {
+      edges!.removeWhere((e) => e.id == edgeId);
+    }
   }
 
   Map<String, dynamic> toJson() {

@@ -112,6 +112,11 @@ void main() {
           '{"nodes":[{"id":"1","type":"text","x":0,"y":0,"width":1,"height":1,"text":"Hello World"},{"id":"2","type":"group","x":5,"y":5,"width":1,"height":1,"background":"/path/to/background.png","backgroundStyle":"cover"},{"id":"3","type":"link","x":5,"y":5,"width":1,"height":1,"color":"#FFFFFF","url":"myurl.com"},{"id":"4","type":"file","x":5,"y":5,"width":1,"height":1,"color":"1","file":"/path/to/my/file"}],"edges":[{"id":"edge-id-1","fromNode":"1","fromSide":"bottom","fromEnd":"arrow","toNode":"2","toSide":"top","toEnd":"arrow","color":"1"}]}');
     });
 
+    test('remove node and its edges from canvas', () {
+      myCanvas.removeNode(textNode.id);
+      expect(myCanvas.nodes?.length, 3);
+      expect(myCanvas.edges?.length, 0);
+    });
     test('decode from jsoncanvas to Canvas', () {
       final testCanvas =
           '{"nodes":[{"id":"1","type":"text","x":0,"y":0,"width":1,"height":1,"text":"Hello World"},{"id":"2","type":"group","x":5,"y":5,"width":1,"height":1,"background":"/path/to/background.png","backgroundStyle":"cover"},{"id":"3","type":"link","x":5,"y":5,"width":1,"height":1,"color":"#FFFFFF","url":"myurl.com"},{"id":"3","type":"file","x":5,"y":5,"width":1,"height":1,"color":"1","file":"/path/to/my/file"}],"edges":[{"id":"edge-id-1","fromNode":"1","fromSide":"bottom","fromEnd":"arrow","toNode":"2","toSide":"top","toEnd":"arrow","color":"1"}]}';

@@ -1,8 +1,6 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library;
 
-export 'src/json_canvas_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/canvas.dart';
+export 'src/canvas_color.dart';
+export 'src/edge.dart';
+export 'src/node.dart';
