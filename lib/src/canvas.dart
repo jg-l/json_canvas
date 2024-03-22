@@ -10,11 +10,21 @@ class Canvas {
 
   addNode(json_canvas.Node node) {
     nodes ??= [];
+    if (nodes!.isNotEmpty) {
+      if (nodes!.any((n) => n.id == node.id)) {
+        throw Exception("Node id:${node.id} already exists in the canvas");
+      }
+    }
     nodes!.add(node);
   }
 
   addEdge(Edge edge) {
     edges ??= [];
+    if (edges!.isNotEmpty) {
+      if (edges!.any((e) => e.id == edge.id)) {
+        throw Exception("Edge id:${edge.id} already exists in the canvas");
+      }
+    }
     edges!.add(edge);
   }
 

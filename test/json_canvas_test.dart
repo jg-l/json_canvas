@@ -40,7 +40,17 @@ void main() {
     );
 
     final fileNode = FileNode(
-      id: '3',
+      id: '4',
+      x: 5,
+      y: 5,
+      width: 1,
+      height: 1,
+      color: "1",
+      file: '/path/to/my/file',
+    );
+
+    final nonUniqueNodeId = FileNode(
+      id: '4',
       x: 5,
       y: 5,
       width: 1,
@@ -67,6 +77,11 @@ void main() {
       myCanvas.addNode(groupNode);
       myCanvas.addNode(urlNode);
       myCanvas.addNode(fileNode);
+      // expect((){myCanvas.addNode(nonUniqueNodeId), Exception()},);
+      expect(() {
+        myCanvas.addNode(nonUniqueNodeId);
+        throw Exception();
+      }, throwsException); // Expecting an exception
       expect(myCanvas.nodes?.isNotEmpty, true);
       expect(myCanvas.nodes?.length, 4);
     });
@@ -80,7 +95,7 @@ void main() {
     test('encode to Canvas to jsoncanvas', () {
       final jsonCanvas = jsonEncode(myCanvas);
       expect(jsonCanvas,
-          '{"nodes":[{"id":"1","type":"text","x":0,"y":0,"width":1,"height":1,"text":"Hello World"},{"id":"2","type":"group","x":5,"y":5,"width":1,"height":1,"background":"/path/to/background.png","backgroundStyle":"cover"},{"id":"3","type":"link","x":5,"y":5,"width":1,"height":1,"color":"#FFFFFF","url":"myurl.com"},{"id":"3","type":"file","x":5,"y":5,"width":1,"height":1,"color":"1","file":"/path/to/my/file"}],"edges":[{"id":"edge-id-1","fromNode":"1","fromSide":"bottom","fromEnd":"arrow","toNode":"2","toSide":"top","toEnd":"arrow","color":"1"}]}');
+          '{"nodes":[{"id":"1","type":"text","x":0,"y":0,"width":1,"height":1,"text":"Hello World"},{"id":"2","type":"group","x":5,"y":5,"width":1,"height":1,"background":"/path/to/background.png","backgroundStyle":"cover"},{"id":"3","type":"link","x":5,"y":5,"width":1,"height":1,"color":"#FFFFFF","url":"myurl.com"},{"id":"4","type":"file","x":5,"y":5,"width":1,"height":1,"color":"1","file":"/path/to/my/file"}],"edges":[{"id":"edge-id-1","fromNode":"1","fromSide":"bottom","fromEnd":"arrow","toNode":"2","toSide":"top","toEnd":"arrow","color":"1"}]}');
     });
 
     test('decode from jsoncanvas to Canvas', () {
