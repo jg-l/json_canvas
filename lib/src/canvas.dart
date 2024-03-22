@@ -1,7 +1,6 @@
 import 'package:json_canvas/src/edge.dart';
 // Prevent conflict imports from dart:html
 import 'package:json_canvas/src/node.dart' as json_canvas;
-import 'package:json_canvas/src/node.dart';
 
 class Canvas {
   List<json_canvas.Node>? nodes;
