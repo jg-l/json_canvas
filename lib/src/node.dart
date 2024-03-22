@@ -34,6 +34,91 @@ sealed class Node {
 
     return data;
   }
+
+  static Node fromJson(Map<String, dynamic> json) {
+    return switch (json) {
+      {
+        'id': String id,
+        'type': 'text',
+        'x': int x,
+        'y': int y,
+        'width': int width,
+        'height': int height,
+        'text': String text,
+      } =>
+        TextNode(
+          id: id,
+          text: text,
+          x: x,
+          y: y,
+          width: width,
+          height: height,
+          color: json["color"],
+        ),
+      {
+        'id': String id,
+        'type': 'file',
+        'file': String file,
+        'x': int x,
+        'y': int y,
+        'width': int width,
+        'height': int height,
+      } =>
+        FileNode(
+          id: id,
+          file: file,
+          subpath: json["subpath"],
+          x: x,
+          y: y,
+          width: width,
+          height: height,
+          color: json["color"],
+        ),
+      {
+        'id': String id,
+        'type': 'link',
+        'url': String url,
+        'x': int x,
+        'y': int y,
+        'width': int width,
+        'height': int height,
+      } =>
+        LinkNode(
+          id: id,
+          url: url,
+          x: x,
+          y: y,
+          width: width,
+          height: height,
+          color: json["color"],
+        ),
+      {
+        'id': String id,
+        'type': 'group',
+        'background': String? background,
+        'backgroundStyle': String? backgroundStyle,
+        'x': int x,
+        'y': int y,
+        'width': int width,
+        'height': int height,
+      } =>
+        GroupNode(
+          id: id,
+          label: json["label"],
+          background: background,
+          backgroundStyle: GroupNodeBackgroundStyle.values.firstWhere(
+              (element) => element.name == backgroundStyle,
+              orElse: () => throw StateError(
+                  'no match found for side: $backgroundStyle')),
+          x: x,
+          y: y,
+          width: width,
+          height: height,
+          color: json["color"],
+        ),
+      _ => throw FormatException("Node didn't match any patterns"),
+    };
+  }
 }
 
 class TextNode extends Node {

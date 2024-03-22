@@ -29,10 +29,20 @@ void main() {
       height: 1,
     );
 
+    final urlNode = LinkNode(
+      id: '3',
+      x: 5,
+      y: 5,
+      width: 1,
+      height: 1,
+      url: 'myurl.com',
+      color: "Hello",
+    );
+
     final edge1 = Edge(
       id: 'edge-id-1',
-      fromNode: textNode,
-      toNode: groupNode,
+      fromNode: textNode.id,
+      toNode: groupNode.id,
       toEnd: End.arrow,
       fromEnd: End.arrow,
       fromSide: Side.bottom,
@@ -59,6 +69,18 @@ void main() {
       final jsonCanvas = jsonEncode(myCanvas);
       expect(jsonCanvas,
           '{"nodes":[{"id":"1","type":"text","x":0,"y":0,"width":1,"height":1,"text":"Hello World"},{"id":"2","type":"group","x":5,"y":5,"width":1,"height":1,"background":"/path/to/background.png","backgroundStyle":"cover"}],"edges":[{"id":"edge-id-1","fromNode":"1","fromSide":"bottom","fromEnd":"arrow","toNode":"2","toSide":"top","toEnd":"arrow","color":"1"}]}');
+    });
+
+    test('decode from jsoncanvas to Canvas', () {
+      final testCanvas =
+          '{"nodes":[{"id":"1","type":"text","x":0,"y":0,"width":1,"height":1,"text":"Hello World"},{"id":"2","type":"group","x":5,"y":5,"width":1,"height":1,"background":"/path/to/background.png","backgroundStyle":"cover"}],"edges":[{"id":"edge-id-1","fromNode":"1","fromSide":"bottom","fromEnd":"arrow","toNode":"2","toSide":"top","toEnd":"arrow","color":"1"}]}';
+      final decodedJson = jsonDecode(testCanvas);
+      final canvasFromJson = Canvas.fromJson(decodedJson);
+      expect(canvasFromJson.edges?.length, 1);
+      expect(canvasFromJson.nodes?.length, 2);
+
+      // expect(jsonCanvas,
+      //     '{"nodes":[{"id":"1","type":"text","x":0,"y":0,"width":1,"height":1,"text":"Hello World"},{"id":"2","type":"group","x":5,"y":5,"width":1,"height":1,"background":"/path/to/background.png","backgroundStyle":"cover"}],"edges":[{"id":"edge-id-1","fromNode":"1","fromSide":"bottom","fromEnd":"arrow","toNode":"2","toSide":"top","toEnd":"arrow","color":"1"}]}');
     });
   });
 }
